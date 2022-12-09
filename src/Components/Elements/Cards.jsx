@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const Cards = () => {
   const [click, setClick] = useState(true);
-  const [pick, setPick] = useState(true);
+  const [picks, setPicks] = useState(true);
   const [boxData, setDoxData] = useState(false);
-  const [medals, setMedals] = useState(1);
+  const [medals, setMedals] = useState('');
 
   const cards = ["card1", "card2", "card3", "card4", "card5"];
 
@@ -16,15 +16,18 @@ const Cards = () => {
     setDoxData(item);
   };
 
+
   const probability = () => {
-    const set = { 1: 0.4, 2: 0.2, 3: 0.5};
-setPick(false);
+    const set = { 1: 0.4, 2: 0.3, 3: 0.1};
+setPicks(false);
     // get probabilities sum:
     let sum = 0;
     for (let j in set) {
       sum += set[j];
     }
     
+    
+
     const pick_random = () => {
       let pick = Math.random() * sum;
       for (let j in set) {
@@ -36,7 +39,10 @@ setPick(false);
     };
 
     console.log(pick_random());
-    setMedals(pick_random());
+    const rand=pick_random();
+    setMedals(rand);
+
+  
   };
  
   return (
@@ -70,7 +76,7 @@ setPick(false);
           Buy
         </button>
         </>
-       ):pick?(
+       ):picks?(
         <>
         <h1>Mystery box</h1>
         <div className="col-md-3 col-6">
